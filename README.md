@@ -1,17 +1,18 @@
-![](./Microns_Slack_Bot.png)
+![](../figures/Microns_Slack_Bot.png)
 # microns_slack_bot
 Microns slack bot is sends updates on the MICrONS (Machine Intelligence From Cortical Networks) project in slack channels it has been added to or even direct messages.
 
 * This bot sends daily update at 11:00 AM EST to the "proofreading-bot" channel in the MICrONS slack channel
-![](./daily.png)
+![](../figures/daily.png)
 
 * When the bot is mentioned in a group with a message containing the word "update" (ex. "@MICrONS Bot send update!"), the bot sends a summary of the recent updates to the user. 
-![](./update.png)
+![](../figures/update.png)
 
 * It can also send a graph that depicts the summary of the data to the user. All you need to do, is again mention the bot with a message containg one of the followg: "graph", "chart", "plot", "figure", "draw", "Graph", "Chart", "Plot", "Figure", "Draw"
 Example: "@MICrONS Bot send a graph please!" or "@MICrONS Bot draw"
 
-![](./draw.png)
+![](../figures/draw.png)
+![](../figures/zoom.png)
 
 * The bot can also be accessed through direct messages to provide updates and graphs!
 
