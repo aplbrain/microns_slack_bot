@@ -1,4 +1,6 @@
-![alt text](https://github.com/nikood/microns_slack_bot/blob/main/figures/logo.png)
+<p align="center">
+  <img src="https://github.com/nikood/microns_slack_bot/blob/main/figures/logo.png" />
+</p>
 
 # microns_slack_bot
 Microns slack bot is sends updates on the MICrONS (Machine Intelligence From Cortical Networks) project in Slack channels it has been added to or even direct messages.
