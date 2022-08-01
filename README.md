@@ -22,7 +22,7 @@ Example: "@MICrONS Bot send a graph please!" or "@MICrONS Bot draw"**
 
 ## Installation
 
-Clone this repo using
+Clone this repo using:
 ```
 $ git clone https://github.com/nikood/microns_slack_bot.git
 ```
