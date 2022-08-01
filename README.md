@@ -10,17 +10,19 @@ Microns slack bot is sends updates on the MICrONS (Machine Intelligence From Cor
 
 ![alt text](https://github.com/nikood/microns_slack_bot/blob/main/figures/update.png)
 
-* **It can also send a graph that depicts the summary of the data to the user. All you need to do, is again mention the bot with a message containg one of the followg: "graph", "chart", "plot", "figure", "draw", "Graph", "Chart", "Plot", "Figure", "Draw"
+* **It can also send a graph that depicts the summary of the data to the user. All you need to do, is again mention the bot with a message containg one of the followg:** "graph", "chart", "plot", "figure", "draw", "Graph", "Chart", "Plot", "Figure", "Draw"
 Example: "@MICrONS Bot send a graph please!" or "@MICrONS Bot draw"**
 
 ![alt text](https://github.com/nikood/microns_slack_bot/blob/main/figures/draw.png)
 ![alt text](https://github.com/nikood/microns_slack_bot/blob/main/figures/zoom.png)
 
-* **The bot can also be accessed through direct messages to provide updates and graphs!**
+* **You rather recieve updates and graphs directly and not in a group channel? No worries! The bot can also be accessed through direct messages to provide the same updates!**
 
 ## Installation
+In order for the slack bot to function 24/7 without having to keep the script open and running on your local computer, set up a virtual environment and then run the code with tmux. 
 
-## Usage 
+Also, for security purposes the .env file for this project was not shared in this repo, but for this python module to run the Slack app and bot tokens need to be saved in a .env file in the same directory as final_bot.py
+
 
 ## Contributing
 Pull requests are welcome! For major changes, please open an issue first to discuss what you would like to change.
