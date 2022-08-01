@@ -2,7 +2,7 @@
   <img src="https://github.com/nikood/microns_slack_bot/blob/main/figures/logo.png" />
 </p>
 
-# microns_slack_bot
+# MICrONS Slack Bot
 Microns slack bot is sends updates on the MICrONS (Machine Intelligence From Cortical Networks) project in Slack channels it has been added to or even direct messages.
 
 * **This bot sends daily update at 11:00 AM EST to the "proofreading-bot" channel in the MICrONS slack channel**
