@@ -21,10 +21,11 @@ Example: "@MICrONS Bot send a graph please!" or "@MICrONS Bot draw"**
 * **You rather receive updates and graphs directly and not in a group channel? No worries! The bot can also be accessed through direct messages to provide the same updates!**
 
 ## Installation
+
 Clone this repo using
-'''
+```
 $ git clone https://github.com/nikood/microns_slack_bot.git
-'''
+```
                       
 In order for the slack bot to function 24/7 without having to keep the script open and running on your local computer, set up a **virtual machine** and then run the code with **tmux**. 
 
