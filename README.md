@@ -23,7 +23,7 @@ Example: "@MICrONS Bot send a graph please!" or "@MICrONS Bot draw"**
 ## Installation
 
 Clone this repo using: 
-                      $ git clone https://github.com/nikood/microns_slack_bot.git
+$ git clone https://github.com/nikood/microns_slack_bot.git
                       
 In order for the slack bot to function 24/7 without having to keep the script open and running on your local computer, set up a **virtual machine** and then run the code with **tmux**. 
 
