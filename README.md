@@ -19,7 +19,7 @@ Example: "@MICrONS Bot send a graph please!" or "@MICrONS Bot draw"**
 * **You rather recieve updates and graphs directly and not in a group channel? No worries! The bot can also be accessed through direct messages to provide the same updates!**
 
 ## Installation
-In order for the slack bot to function 24/7 without having to keep the script open and running on your local computer, set up a virtual environment and then run the code with tmux. 
+In order for the slack bot to function 24/7 without having to keep the script open and running on your local computer, set up a **virtual machine** and then run the code with **tmux**. 
 
 Also, for security purposes the .env file for this project was not shared in this repo, but for this python module to run the Slack app and bot tokens need to be saved in a .env file in the same directory as final_bot.py
 
