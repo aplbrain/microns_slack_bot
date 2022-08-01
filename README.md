@@ -1,7 +1,7 @@
 ![alt text](https://github.com/nikood/microns_slack_bot/blob/main/figures/Microns_Slack_Bot.png)
 
 # microns_slack_bot
-Microns slack bot is sends updates on the MICrONS (Machine Intelligence From Cortical Networks) project in slack channels it has been added to or even direct messages.
+Microns slack bot is sends updates on the MICrONS (Machine Intelligence From Cortical Networks) project in Slack channels it has been added to or even direct messages.
 
 * **This bot sends daily update at 11:00 AM EST to the "proofreading-bot" channel in the MICrONS slack channel**
 ![alt text](https://github.com/nikood/microns_slack_bot/blob/main/figures/daily.png)
@@ -21,7 +21,7 @@ Example: "@MICrONS Bot send a graph please!" or "@MICrONS Bot draw"**
 ## Installation
 In order for the slack bot to function 24/7 without having to keep the script open and running on your local computer, set up a **virtual machine** and then run the code with **tmux**. 
 
-Also, for security purposes the .env file for this project was not shared in this repo, but for this python module to run the Slack app and bot tokens need to be saved in a .env file in the same directory as final_bot.py
+Additionally, the project's .env file was not shared in this repository for security reasons, but in order for this Python module to function, the developers Slack app and bot tokens must be saved in an .env file in the same directory as final bot.py.
 
 
 ## Contributing
