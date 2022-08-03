@@ -29,7 +29,7 @@ $ git clone https://github.com/nikood/microns_slack_bot.git
                       
 In order for the slack bot to function 24/7 without having to keep the script open and running on your local computer, set up a **virtual machine** and then run the code with **tmux**. 
 
-Additionally, the project's .env file was not shared in this repository for security reasons, but in order for this Python module to function, the developer's Slack app and bot tokens must be saved in an .env file in the same directory as final bot.py.
+Additionally, the project's .env file was not shared in this repository for security reasons, but in order for this Python module to function, the developer's Slack app and bot tokens must be saved in an .env file in the same directory as final_bot.py.
 
 
 ## Contributing
