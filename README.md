@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/nikood/microns_slack_bot/blob/main/figures/logo.png" />
+  <img src="https://github.com/nikood/microns_slack_bot/blob/main/figures/clear_logo.png" />
 </p>
 
 # MICrONS Slack Bot
