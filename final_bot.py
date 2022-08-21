@@ -1,40 +1,23 @@
 import logging
 import os
-import pickle
 import re
-import time
-from datetime import datetime, timedelta
-from os.path import expanduser, join
+from datetime import datetime
 from pathlib import Path
-import extension_analysis
 
-import matplotlib.pyplot as plt
-from neuvueclient import NeuvueQueue
-from PIL import Image
 import numpy as np
 import pandas as pd
-from caveclient import CAVEclient
-from joblib import Parallel, delayed
-from tqdm.auto import tqdm
 from dotenv import load_dotenv
 from neuvue_queue_task_assignment.summary_stats.plot_multi_neuron_counts import \
     plot_multi_neuron_counts
 from neuvue_queue_task_assignment.summary_stats.update_before_and_after_nuclei_tables import \
     update_before_and_after_nuclei_tables
-from sklearn.feature_extraction import img_to_graph
 from slack_bolt import App
 from slack_bolt.adapter.socket_mode import SocketModeHandler
 from tabulate import tabulate
-from slack_sdk import WebClient
-from slack_sdk.errors import SlackApiError
-from neuvue_queue_task_assignment.neuvue_constants import (
-    BOX_PATH, BOX_PATH_TASKGEN, NEUVUE_QUEUE_URL, EXTENSION_NAMESPACE
-)
+
+import extension_analysis
 
 ################ INITIATE BOT ##############################################################################################
-
-# init cave client
-# cave_client = CAVEclient('minnie65_phase3_v1')
 
 # setting up the environment path
 env_path = Path(__file__).parent.resolve() / ".env"
@@ -62,10 +45,6 @@ unique_before = None
 counts_before = None
 unique_after_match = None
 counts_after_match = None
-
-# merge_numb = None
-# total_synapse_numb = None
-
 
 #################### THE GIVEN DATA (MULTI SOMA) ######################################################################################
 def update_data():
@@ -161,79 +140,6 @@ def update_data():
             unique_after_match.append(key)
             counts_after_match.append(0)
 
-####################### EXTENSION DATA  ##########################################################################
-# def ext_data():
-#     global merge_numb
-#     global total_synapse_numb
-
-#     # cave = CAVEclient("minnie65_phase3_v1")
-#     neuvue = NeuvueQueue(NEUVUE_QUEUE_URL)
-
-#     #########################################
-#     #           Number of Edits             #
-#     #########################################
-
-#     def get_tasks_for_extension_namespace(namespace):
-#         tasks = neuvue.get_tasks(sieve={
-#         'namespace': 'reverseExtension',
-#         'status':'closed'
-#         }, select=['metadata'])
-#         return tasks
-
-#     task_dfs = pd.concat([get_tasks_for_extension_namespace(x) for x in EXTENSION_NAMESPACE])
-
-#     def get_operation_ids_from_tasks(task_df):
-#         operation_ids = []
-#         for metadata in task_df['metadata']:
-#             operation_ids += metadata.get('operation_ids', [])
-#         return np.unique(np.array(operation_ids))
-
-
-#     op_ids = get_operation_ids_from_tasks(task_dfs)
-
-#     def get_operation_details(operation_ids):
-#         operation_details = {}
-#         for i in tqdm(range(0, len(operation_ids), 500)):
-#             end = min(len(operation_ids), i+500)
-            
-#             od = cave_client.chunkedgraph.get_operation_details(
-#                 operation_ids[i: end]
-#             )
-            
-#             operation_details.update( od)
-#         return operation_details
-
-#     operation_details = get_operation_details(op_ids)
-
-#     splits = {k:v for k,v in operation_details.items() if v.get('removed_edges')}
-#     merges = {k:v for k,v in operation_details.items() if v.get('added_edges')}
-
-#     #reported by the bot
-#     merge_numb = len(merges)
-
-#     #########################################
-#     #     Number of Synapses Modified       #
-#     #########################################
-
-#     starting_ids = [x['starting_seg_id'] for x in task_dfs.metadata]
-
-#     len(starting_ids)
-
-#     latest_ids = Parallel(n_jobs=20)(delayed(cave_client.chunkedgraph.get_latest_roots)(x) for x in tqdm(starting_ids))
-
-#     id_map = dict(zip(starting_ids, list(map(list, latest_ids))))
-
-#     #########################################
-#     #     Synapse Counts for Start IDs      #
-#     #########################################
-
-#     counts = pd.read_csv(BOX_PATH_TASKGEN + '/v396_top_orphans.csv')
-
-#     start_counts = counts[counts['post_pt_root_id'].astype(str).isin(starting_ids)].copy()
-
-#     #reported by the bot
-#     total_synapse_numb = start_counts['count'].sum()
-
 
 ####################### DM CHANELL UPDATE ##########################################################################
 
@@ -317,10 +223,11 @@ def send_graph(message, say):
 @app.message(re.compile("(Extension|extension|Ext|ext)"))
 def send_ext_update(message, say):
     say(text="Processing your request now!")
-    # ext_data()
+    extension_analysis.update_ext_analysis()
+
     table_1 = [["Description", "Value"],
-             ["Number of extensions (merges) made: ", str(extension_analysis.merge_numb)],
-             ["Total synapses reassigned :", str(extension_analysis.total_synapse_numb)],
+             ["Number of extensions (merges) made: ", str(extension_analysis.merge_num)],
+             ["Total synapses reassigned :", str(extension_analysis.total_synapse_num)],
              ]
              
     ext_update = (
@@ -404,10 +311,11 @@ def give__mention_update(event, say):
         say(text=update, channel=channel)
 
     if re.search("(Extension|extension|Ext|ext)", message):
-        # ext_data()
+        extension_analysis.update_ext_analysis()
+
         table_1 = [["Description", "Value"],
-             ["Number of extensions (merges) made: ", str(extension_analysis.merge_numb)],
-             ["Total synapses reassigned :", str(extension_analysis.total_synapse_numb)],
+             ["Number of extensions (merges) made: ", str(extension_analysis.merge_num)],
+             ["Total synapses reassigned :", str(extension_analysis.total_synapse_num)],
              ]
              
         ext_update = (
