@@ -1,6 +1,7 @@
 import logging
 import os
 import re
+import json
 from datetime import datetime
 from pathlib import Path
 
@@ -45,6 +46,12 @@ unique_before = None
 counts_before = None
 unique_after_match = None
 counts_after_match = None
+
+#################### FETCH UPDATED EXTENSION DATA #####################################################################################
+def ext_update():
+    with open("extension_update_date.json", "r") as f:
+        data = json.load(f)
+        return data
 
 #################### THE GIVEN DATA (MULTI SOMA) ######################################################################################
 def update_data():
@@ -223,14 +230,14 @@ def send_graph(message, say):
 @app.message(re.compile("(Extension|extension|Ext|ext)"))
 def send_ext_update(message, say):
     say(text="Processing your request now!")
-    extension_analysis.update_ext_analysis()
+    ext_data = ext_update()
 
     table_1 = [["Description", "Value"],
-             ["Number of extensions (merges) made: ", str(extension_analysis.merge_num)],
-             ["Total synapses reassigned :", str(extension_analysis.total_synapse_num)],
+             ["Number of extensions (merges) made: ", str(ext_data["merge_num"])],
+             ["Total synapses reassigned :", str(ext_data["total_synapse_num"])],
              ]
              
-    ext_update = (
+    ext_update_table = (
           "```\n"
         + "Update as of: " + str(datetime.utcnow())
         + "```"
@@ -245,7 +252,7 @@ def send_ext_update(message, say):
 
     logger.info(f"Sent update on extension analysis to {user_id} ")
 
-    say(text=ext_update, channel=dm_channel)
+    say(text=ext_update_table, channel=dm_channel)
 
 ###################### GROUP CHANNEL UPDATE & GRAPH #############################################################################
 
@@ -311,14 +318,14 @@ def give__mention_update(event, say):
         say(text=update, channel=channel)
 
     if re.search("(Extension|extension|Ext|ext)", message):
-        extension_analysis.update_ext_analysis()
+        ext_data = ext_update()
 
         table_1 = [["Description", "Value"],
-             ["Number of extensions (merges) made: ", str(extension_analysis.merge_num)],
-             ["Total synapses reassigned :", str(extension_analysis.total_synapse_num)],
+             ["Number of extensions (merges) made: ", str(ext_data["merge_num"])],
+             ["Total synapses reassigned :", str(ext_data["total_synapse_num"])],
              ]
              
-        ext_update = (
+        ext_update_table = (
             "```\n"
             + "Update as of: " + str(datetime.utcnow())
             + "```"
@@ -330,7 +337,7 @@ def give__mention_update(event, say):
 
         logger.info(f"Sent update on extension analysis to {user_id} ")
 
-        say(text=ext_update, channel=channel)
+        say(text=ext_update_table, channel=channel)
 
 ########################### SCHEDULUED MESSAGES ################################################################
 

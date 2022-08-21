@@ -1,4 +1,5 @@
 import numpy as np
+import json
 import pandas as pd
 from caveclient import CAVEclient
 from joblib import Parallel, delayed
@@ -93,6 +94,11 @@ def update_ext_analysis():
         str).isin(starting_ids)].copy()
     total_synapse_num = start_counts['count'].sum()
     print(f"Total synapses reassigned : {start_counts['count'].sum()}")
+
+    ext_data = {"merge_num": int(merge_num), "total_synapse_num": int(total_synapse_num)}
+
+    with open('extension_update_date.json', 'w') as f:
+        json.dump(ext_data, f)
 
 
 if __name__ == "__main__":
