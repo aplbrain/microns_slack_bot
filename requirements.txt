@@ -1,0 +1,10 @@
+caveclient==4.15.0
+joblib==1.1.0
+microns_minnie65_task_assignment.egg==info
+neuvueclient==0.11.1
+numpy==1.21.5
+pandas==1.4.2
+python-dotenv==0.20.0
+slack_bolt==1.14.0
+tabulate==0.8.9
+tqdm==4.64.0

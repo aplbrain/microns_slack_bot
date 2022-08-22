@@ -16,8 +16,6 @@ from slack_bolt import App
 from slack_bolt.adapter.socket_mode import SocketModeHandler
 from tabulate import tabulate
 
-import extension_analysis
-
 ################ INITIATE BOT ##############################################################################################
 
 # setting up the environment path
