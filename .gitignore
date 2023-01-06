@@ -127,3 +127,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+box_all_neuron_tables/
+Task_Assignment_Files/
+extension_update_date.json
+*.png
+cache/
